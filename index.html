@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./web3.min.js"></script>
+    <script type="text/javascript" src="./human_standard_token_abi.js"></script>
+    <script type="text/javascript" src="./erc20balance.js"></script>
+</head>
+<body>
+    <h1>ETH Balance Fetcher</h1>
+    <p>Enter your Ethereum Address:</p>
+    <input type="text" size="50" id="address" />
+    <button type="button" onClick="getBalance();">Get Balance</button>
+    <br />
+    <br />
+    <div id="output"></div>
+    <p>Enter ERC20 Token Contract Address:</p>
+    <input type="text" size="50" id="contractAddress" />
+    <button type="button" onClick="getERC20Balance();">Get ERC20 Balance</button>
+    <br />
+    <br />
+    <div id="output2"></div>
+</body>
+</html>
