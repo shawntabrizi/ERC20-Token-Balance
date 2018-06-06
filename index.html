@@ -20,5 +20,18 @@
     <br />
     <br />
     <div id="output2"></div>
+    <br />
+    <input type="button" value="Save" id="add" />
+    <ul id="list"></ul>
+    <script>
+    document.getElementById("add").onclick = function() {
+        var walletAdr = document.getElementById("address").value;
+        // var tokenCntr = document.getElementById("contractAddress");
+        var ul = document.getElementById("list")
+        var li = document.createElement("li")
+        li.appendChild(document.createTextNode(walletAdr))
+        ul.appendChild(li)
+    }
+    </script>
 </body>
 </html>
