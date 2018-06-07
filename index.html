@@ -28,7 +28,7 @@
         document.getElementById("add").onclick = function() {
             var walletAdr = document.getElementById(
                 "address").value;
-            var firstBl = getFirstBlock(walletAdr);
+            var firstBl = getBalanceInRange(walletAdr);
             console.log(firstBl); 
             /*
             if (typeof(Storage) !== "undefined") {

@@ -60,3 +60,9 @@ async function getFirstBlock(address) {
  
     return data.result[0].blockNumber;
 }
+
+async function getBalanceInRange(address) {
+    var block = getFirstBlock(address);
+
+    return block;
+}
