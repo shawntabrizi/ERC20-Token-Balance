@@ -30,6 +30,7 @@ async function getBalance() {
         document.getElementById("output").innerHTML = error;
     }
 }
+
 async function getERC20Balance() {
     var address, contractAddress, contractABI, tokenContract, decimals, balance, name, symbol, adjustedBalance
     address = document.getElementById("address").value
@@ -50,4 +51,12 @@ async function getERC20Balance() {
     } catch (error) {
         document.getElementById("output2").innerHTML = error;
     }
+}
+
+// Get the first transaction block for an address
+async function getFirstBlock(address) {
+    let response = await fetch("https://api.etherscan.io/api?module=account&action=txlist&address=" + address + "&startblock=0&page=1&offset=10&sort=asc");
+    let data = await response.json();
+ 
+    return data.result[0].blockNumber;
 }
