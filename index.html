@@ -25,12 +25,15 @@
     <ul id="list"></ul>
     <script>
     document.getElementById("add").onclick = function() {
-        var walletAdr = document.getElementById("address").value;
-        // var tokenCntr = document.getElementById("contractAddress");
-        var ul = document.getElementById("list")
-        var li = document.createElement("li")
-        li.appendChild(document.createTextNode(walletAdr))
-        ul.appendChild(li)
+        var walletAdr = document.getElementById(
+            "address").value;
+        localStorage.setItem("walletAdr", walletAdr)
+        console.log(localStorage.getItem("walletAdr"))
+
+        // var ul = document.getElementById("list")
+        // var li = document.createElement("li")
+        // li.appendChild(document.createTextNode(walletAdr))
+        // ul.appendChild(li)
     }
     </script>
 </body>
