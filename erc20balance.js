@@ -61,8 +61,8 @@ async function getFirstBlock(address) {
     return data.result[0].blockNumber;
 }
 
-async function getBalanceInRange(address) {
-    var block = getFirstBlock(address);
+async function getBalanceInRange(address, block) {
+    var thisBal = web3.eth.getBalance(address, block);
 
-    return block;
+    return thisBal;
 }

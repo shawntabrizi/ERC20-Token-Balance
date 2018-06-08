@@ -28,8 +28,14 @@
         document.getElementById("add").onclick = function() {
             var walletAdr = document.getElementById(
                 "address").value;
-            var firstBl = getBalanceInRange(walletAdr);
-            console.log(firstBl); 
+            return getFirstBlock(walletAdr)
+            .then(firstBlock=> {
+                console.log(firstBlock);
+                return getBalanceInRange(walletAdr, firstBlock);
+            })
+            .then(firstBalance => {
+                console.log(firstBalance);
+            });
             /*
             if (typeof(Storage) !== "undefined") {
                 var walletAdr = [];
