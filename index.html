@@ -30,11 +30,13 @@
                 "address").value;
             return getFirstBlock(walletAdr)
             .then(firstBlock=> {
-                console.log(firstBlock);
-                return getBalanceInRange(walletAdr, firstBlock);
+                // console.log(firstBlock);
+                var lastBlock = web3.eth.blockNumber;
+                console.log(lastBlock);
+                return getBalanceInRange(walletAdr, lastBlock);
             })
             .then(firstBalance => {
-                console.log(firstBalance);
+                console.log(firstBalance);//['c'][0]);
             });
             /*
             if (typeof(Storage) !== "undefined") {

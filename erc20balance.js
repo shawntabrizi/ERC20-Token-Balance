@@ -61,8 +61,9 @@ async function getFirstBlock(address) {
     return data.result[0].blockNumber;
 }
 
-async function getBalanceInRange(address, block) {
-    var thisBal = web3.eth.getBalance(address, block);
+async function getBalanceInRange(address, firstBlock) {
+    let wei = web3.eth.getBalance(address, firstBlock);
+    let ether = parseFloat(web3.fromWei(wei, 'ether'));
 
-    return thisBal;
+    return ether;
 }
