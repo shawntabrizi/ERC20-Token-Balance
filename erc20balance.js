@@ -52,12 +52,15 @@ async function getERC20Balance() {
     }
 }
 
-function saveAddrLocalStorage(addr) {
+function saveAddrLocalStorage(address) {
     if (typeof(Storage) !== "undefined") {
-        if (addrs == null) var addrs = [];
-        addrs.push(addr);
-        localStorage.setItem("addrs", addrs)
-        console.log(localStorage.getItem("addrs"))
+        var addresses = [];
+        if (localStorage.getItem("addresses") != null) {
+            addresses.concat(localStorage.getItem("addresses"));
+        };
+        addresses.push(address);
+        localStorage.setItem("addresses", addresses);
+        console.log(localStorage.getItem("addresses"));
         /*
         var tokenCntr = document.getElementById(
                 "contractAddress").value;
