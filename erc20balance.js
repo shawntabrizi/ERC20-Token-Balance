@@ -55,7 +55,10 @@ async function getERC20Balance() {
 function saveAddrLocalStorage(address) {
     if (typeof(Storage) !== "undefined") {
         var addresses = [];
-        if (localStorage.getItem("addresses") != null) {
+        if (typeof localStorage.getItem("addresses") === "string") {
+            addresses.push(localStorage.getItem("addresses"));
+        };
+        if (typeof localStorage.getItem("addresses") === "array") {
             addresses.concat(localStorage.getItem("addresses"));
         };
         addresses.push(address);
