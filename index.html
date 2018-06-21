@@ -25,21 +25,8 @@
     <ul id="list"></ul>
     <script>
     document.getElementById("add").onclick = function() {
-        if (typeof(Storage) !== "undefined") {
-            var walletAdr = document.getElementById(
-                "address").value;
-            localStorage.setItem("walletAdr", walletAdr)
-            console.log(localStorage.getItem("walletAdr"))
-
-            var tokenCntr = document.getElementById(
-                "contractAddress").value;
-            localStorage.setItem("tokenCntr", tokenCntr)
-            console.log(localStorage.getItem("tokenCntr"))
-        } else {
-            console.log(
-                "Your browser does not support web storage")
-        }
-
+        var addr = document.getElementById("address").value;
+        saveAddrLocalStorage(addr);
         // var ul = document.getElementById("list")
         // var li = document.createElement("li")
         // li.appendChild(document.createTextNode(walletAdr))
