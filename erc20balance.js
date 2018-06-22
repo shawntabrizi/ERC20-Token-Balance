@@ -52,25 +52,23 @@ async function getERC20Balance() {
     }
 }
 
-function saveAddrLocalStorage(address) {
+function appendToLocalStorage(datum, localStorageName) {
+  if (datum) {
     if (typeof(Storage) !== "undefined") {
-        var addresses = [];
-        if (typeof localStorage.getItem("addresses") === "string") {
-            addresses.push(localStorage.getItem("addresses"));
-        };
-        if (typeof localStorage.getItem("addresses") === "array") {
-            addresses.concat(localStorage.getItem("addresses"));
-        };
-        addresses.push(address);
-        localStorage.setItem("addresses", addresses);
-        console.log(localStorage.getItem("addresses"));
-        /*
-        var tokenCntr = document.getElementById(
-                "contractAddress").value;
-            localStorage.setItem("tokenCntr", tokenCntr)
-            console.log(localStorage.getItem("tokenCntr"))
-        */
-        } else {
-            console.log("Your browser does not support web storage")
+      let data;
+      if (localStorage.getItem(localStorageName)) {
+        if (localStorage[localStorageName].includes(datum)) {
+          return;
         }
+        data = JSON.parse(localStorage.getItem(localStorageName));
+      } else {
+        data = [];
+      }
+      data.push(datum);
+      localStorage.setItem(localStorageName, JSON.stringify(data));
+      console.log(localStorage[localStorageName])
+    } else {
+      console.log("Your browser does not support web storage")
+    }
+  }
 }
