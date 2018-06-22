@@ -67,8 +67,8 @@ function appendToLocalStorage(datum, localStorageName) {
       data.push(datum);
       localStorage.setItem(localStorageName, JSON.stringify(data));
       console.log(localStorage[localStorageName])
-    } else {
-      console.log("Your browser does not support web storage")
     }
+  } else {
+    console.log("Your browser does not support web storage")
   }
 }
