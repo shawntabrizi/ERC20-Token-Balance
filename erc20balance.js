@@ -53,8 +53,8 @@ async function getERC20Balance() {
 }
 
 function appendToLocalStorage(datum, localStorageName) {
-  if (datum) {
-    if (typeof(Storage) !== "undefined") {
+  if (typeof(Storage) !== "undefined") {
+    if (datum) {
       let data;
       if (localStorage.getItem(localStorageName)) {
         if (localStorage[localStorageName].includes(datum)) {
