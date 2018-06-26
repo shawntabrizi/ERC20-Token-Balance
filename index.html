@@ -26,6 +26,23 @@
 
     <script>
         document.getElementById("add").onclick = function() {
+            var walletAddress = document.getElementById("address").value;
+            appendToLocalStorage(walletAddress, "walletAddress");
+            var contractAddress = document.getElementById("contractAddress").value;
+            appendToLocalStorage(contractAddress, "contractAddress");
+            // var ul = document.getElementById("list")
+            // var li = document.createElement("li")
+            // li.appendChild(document.createTextNode(walletAdr))
+            // ul.appendChild(li)
+        }
+    </script>
+
+    <div id="output3"></div>
+    <br />
+    <input type="button" value="History" id="history" />
+    <ul id="list"></ul>
+    <script>
+        document.getElementById("history").onclick = function() {
             var walletAdr = document.getElementById(
                 "address").value;
             return getFirstBlock(walletAdr)
@@ -38,29 +55,7 @@
             .then(firstBalance => {
                 console.log(firstBalance);//['c'][0]);
             });
-            /*
-            if (typeof(Storage) !== "undefined") {
-                var walletAdr = [];
-                walletAdr.push(document.getElementById(
-                    "address").value);
-                localStorage.setItem("walletAdr", walletAdr)
-                console.log(localStorage.getItem("walletAdr"))
-
-                var tokenCntr = document.getElementById(
-                    "contractAddress").value;
-                localStorage.setItem("tokenCntr", tokenCntr)
-                console.log(localStorage.getItem("tokenCntr"))
-            } else {
-                console.log(
-                    "Your browser does not support web storage")
-            }
-            */
-
-            // var ul = document.getElementById("list")
-            // var li = document.createElement("li")
-            // li.appendChild(document.createTextNode(walletAdr))
-            // ul.appendChild(li)
-    }
+        }
     </script>
 
 </body>

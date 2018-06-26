@@ -53,6 +53,27 @@ async function getERC20Balance() {
     }
 }
 
+function appendToLocalStorage(datum, localStorageName) {
+  if (typeof(Storage) !== "undefined") {
+    if (datum) {
+      let data;
+      if (localStorage.getItem(localStorageName)) {
+        if (localStorage[localStorageName].includes(datum)) {
+          return;
+        }
+        data = JSON.parse(localStorage.getItem(localStorageName));
+      } else {
+        data = [];
+      }
+      data.push(datum);
+      localStorage.setItem(localStorageName, JSON.stringify(data));
+      // console.log(localStorage[localStorageName])
+    }
+  } else {
+    console.log("Your browser does not support web storage")
+  }
+}
+
 // Get the first transaction block for an address
 async function getFirstBlock(address) {
     let response = await fetch("https://api.etherscan.io/api?module=account&action=txlist&address=" + address + "&startblock=0&page=1&offset=10&sort=asc");
