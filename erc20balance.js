@@ -30,6 +30,7 @@ async function getBalance() {
         document.getElementById("output").innerHTML = error;
     }
 }
+
 async function getERC20Balance() {
     var address, contractAddress, contractABI, tokenContract, decimals, balance, name, symbol, adjustedBalance
     address = document.getElementById("address").value
@@ -66,9 +67,24 @@ function appendToLocalStorage(datum, localStorageName) {
       }
       data.push(datum);
       localStorage.setItem(localStorageName, JSON.stringify(data));
-      console.log(localStorage[localStorageName])
+      // console.log(localStorage[localStorageName])
     }
   } else {
     console.log("Your browser does not support web storage")
   }
+}
+
+// Get the first transaction block for an address
+async function getFirstBlock(address) {
+    let response = await fetch("https://api.etherscan.io/api?module=account&action=txlist&address=" + address + "&startblock=0&page=1&offset=10&sort=asc");
+    let data = await response.json();
+ 
+    return data.result[0].blockNumber;
+}
+
+async function getBalanceInRange(address, firstBlock) {
+    let wei = web3.eth.getBalance(address, firstBlock);
+    let ether = parseFloat(web3.fromWei(wei, 'ether'));
+
+    return ether;
 }
