@@ -20,5 +20,43 @@
     <br />
     <br />
     <div id="output2"></div>
+    <br />
+    <input type="button" value="Save" id="add" />
+    <ul id="list"></ul>
+
+    <script>
+        document.getElementById("add").onclick = function() {
+            var walletAddress = document.getElementById("address").value;
+            appendToLocalStorage(walletAddress, "walletAddress");
+            var contractAddress = document.getElementById("contractAddress").value;
+            appendToLocalStorage(contractAddress, "contractAddress");
+            // var ul = document.getElementById("list")
+            // var li = document.createElement("li")
+            // li.appendChild(document.createTextNode(walletAdr))
+            // ul.appendChild(li)
+        }
+    </script>
+
+    <div id="output3"></div>
+    <br />
+    <input type="button" value="History" id="history" />
+    <ul id="list"></ul>
+    <script>
+        document.getElementById("history").onclick = function() {
+            var walletAdr = document.getElementById(
+                "address").value;
+            return getFirstBlock(walletAdr)
+            .then(firstBlock=> {
+                // console.log(firstBlock);
+                var lastBlock = web3.eth.blockNumber;
+                console.log(lastBlock);
+                return getBalanceInRange(walletAdr, lastBlock);
+            })
+            .then(firstBalance => {
+                console.log(firstBalance);//['c'][0]);
+            });
+        }
+    </script>
+
 </body>
 </html>
