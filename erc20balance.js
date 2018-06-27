@@ -75,15 +75,20 @@ function appendToLocalStorage(datum, localStorageName) {
 }
 
 // Get the first transaction block for an address
-async function getFirstBlock(address) {
-  let response = await fetch("https://api.etherscan.io/api?module=account&action=txlist&address=" + address + "&startblock=0&page=1&offset=10&sort=asc");
-  let data = await response.json();
+async function getTxBalances(address) {
+  var response = await fetch("https://api.etherscan.io/api?module=account&action=txlist&address=" + address + "&startblock=0&page=1&offset=10&sort=asc");
+  var data = await response.json();
+  var balances = [];
+  for ( i=0; i < data.result.length; i++ ) {
+    let balance = getBalanceAtBlock(address, data.result[i].blockNumber);
+    balances.push(balance);
+  };
  
-  return data.result[0].blockNumber;
+  return balances;
 }
 
-async function getBalanceInRange(address, firstBlock) {
-  let wei = web3.eth.getBalance(address, firstBlock);
+async function getBalanceAtBlock(address, blockNumber) {
+  let wei = web3.eth.getBalance(address, blockNumber);
   let ether = parseFloat(web3.fromWei(wei, 'ether'));
 
   return ether;

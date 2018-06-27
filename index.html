@@ -1,74 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="UTF-8">
-      <script type="text/javascript" src="./web3.min.js"></script>
-      <script type="text/javascript" src="./human_standard_token_abi.js"></script>
-      <script type="text/javascript" src="./erc20balance.js"></script>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./web3.min.js"></script>
+    <script type="text/javascript" src="./human_standard_token_abi.js"></script>
+    <script type="text/javascript" src="./erc20balance.js"></script>
   </head>
   <body>
-      <h1>ETH Balance Fetcher</h1>
-      <p>Enter your Ethereum Address:</p>
-      <input type="text" size="50" id="address" />
-      <button type="button" onClick="getBalance();">Get Balance</button>
-      <br />
-      <br />
-      <div id="output"></div>
-      <p>Enter ERC20 Token Contract Address:</p>
-      <input type="text" size="50" id="contractAddress" />
-      <button type="button" onClick="getERC20Balance();">Get ERC20 Balance</button>
-      <br />
-      <br />
-      <div id="output2"></div>
-      <br />
-      <input type="button" value="Save" id="add" />
-      <br />
-      <br />
+    <h1>ETH Balance Fetcher</h1>
+    <p>Enter your Ethereum Address:</p>
+    <input type="text" size="50" id="address" />
+    <button type="button" onClick="getBalance();">Get Balance</button>
+    <br />
+    <br />
+    <div id="output"></div>
+    <p>Enter ERC20 Token Contract Address:</p>
+    <input type="text" size="50" id="contractAddress" />
+    <button type="button" onClick="getERC20Balance();">Get ERC20 Balance</button>
+    <br />
+    <br />
+    <div id="output2"></div>
+    <br />
+    <input type="button" value="Save" id="add" />
+    <br />
+    <br />
 
-      <script>
-        document.getElementById("add").onclick = function() {
-          var walletAddress = document.getElementById("address").value;
-          appendToLocalStorage(walletAddress, "walletAddress");
-          var contractAddress = document.getElementById("contractAddress").value;
-          appendToLocalStorage(contractAddress, "contractAddress");
-          // var ul = document.getElementById("list")
-          // var li = document.createElement("li")
-          // li.appendChild(document.createTextNode(walletAdr))
-          // ul.appendChild(li)
-          }
-      </script>
 
-      <select id="selectWalletAddress"></select>
-      <br />
-      <br />
-      <script>
-        if ( localStorage["walletAddress"] ) {
-          var selectWalletAddress = JSON.parse(localStorage["walletAddress"]);
-            select = document.getElementById("selectWalletAddress");
-
-          for( walletAddress in selectWalletAddress ) {
-            select.add( new Option( selectWalletAddress[walletAddress] ));
-          }
-          // console.log(document.getElementById("selectWalletAddress").value);
+    <script>
+      document.getElementById("add").onclick = function() {
+        var walletAddress = document.getElementById("address").value;
+        appendToLocalStorage(walletAddress, "walletAddress");
+        var contractAddress = document.getElementById("contractAddress").value;
+        appendToLocalStorage(contractAddress, "contractAddress");
+        // var ul = document.getElementById("list")
+        // var li = document.createElement("li")
+        // li.appendChild(document.createTextNode(walletAdr))
+        // ul.appendChild(li)
         }
-      </script>
+    </script>
 
-      <input type="button" value="History" id="history" />
-      <script>
-        document.getElementById("history").onclick = function() {
-          var walletAdr = document.getElementById("selectWalletAddress").value;
-          return getFirstBlock(walletAdr)
-            .then(firstBlock=> {
-            // console.log(firstBlock);
-            var lastBlock = web3.eth.blockNumber;
-            console.log(lastBlock);
-            return getBalanceInRange(walletAdr, lastBlock);
-          })
-          .then(firstBalance => {
-              console.log(firstBalance);//['c'][0]);
-          });
+    <select id="selectWalletAddress"></select>
+    <br />
+    <br />
+    <script>
+      if ( localStorage["walletAddress"] ) {
+        var selectWalletAddress = JSON.parse(localStorage["walletAddress"]);
+          select = document.getElementById("selectWalletAddress");
+
+        for( walletAddress in selectWalletAddress ) {
+          select.add( new Option( selectWalletAddress[walletAddress] ));
         }
-      </script>
+        // console.log(document.getElementById("selectWalletAddress").value);
+      }
+    </script>
+
+    <input type="button" value="Account History" id="history" />
+    <script>
+      document.getElementById("history").onclick = function() {
+        var walletAdr = document.getElementById("selectWalletAddress").value;
+        return getTxBalances(walletAdr)
+        .then( etherBalances => {
+          console.log(etherBalances);
+        });
+      };
+    </script>
 
   </body>
 </html>
