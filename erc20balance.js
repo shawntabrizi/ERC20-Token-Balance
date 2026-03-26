@@ -7,7 +7,7 @@ const ERC20_ABI = [
 ];
 
 // Public RPC fallback (no API key needed)
-const PUBLIC_RPC = "https://cloudflare-eth.com";
+const PUBLIC_RPC = "https://ethereum-rpc.publicnode.com";
 
 function getProvider() {
     if (window.ethereum) {
