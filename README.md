@@ -1,12 +1,29 @@
-# ERC-20-Token-Balance
-This is an extension of the ["Hello World" project](https://github.com/shawntabrizi/ETH-Balance) for Ethereum and Web3.js which allows you to query the ERC-20 token balance of an Ethereum address.
+# ERC-20 Token Balance
 
-Try it out here: https://shawntabrizi.com/ERC20-Token-Balance/
+Query the ERC-20 token balance of any Ethereum address — a simple "Hello World" for interacting with smart contracts.
 
-## Learn about ERC20 tokens and the Human Standard Token
-http://shawntabrizi.com/ethereum/ethereum-token-contract-abi-web3-erc-20-human-standard-tokens/
+**Try it out: [shawntabrizi.com/ERC20-Token-Balance](https://shawntabrizi.com/ERC20-Token-Balance/)**
 
-## Check out other simple Web3.js samples
-https://github.com/shawntabrizi/ETH-Balance
+## How It Works
 
-https://github.com/shawntabrizi/ETH-Balance-Graph
+1. Enter an Ethereum address to get its ETH balance
+2. Enter an ERC-20 token contract address to get the token balance, name, and symbol
+
+Uses [ethers.js](https://docs.ethers.org/) to query the Ethereum blockchain. Connects to your browser wallet (MetaMask, etc.) if available, otherwise falls back to a free public RPC endpoint.
+
+## Example Token Contracts
+
+| Token | Contract Address |
+|-------|-----------------|
+| USDC  | `0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48` |
+| USDT  | `0xdAC17F958D2ee523a2206206994597C13D831ec7` |
+| DAI   | `0x6B175474E89094C44Da98b954EedeAC495271d0F` |
+
+## Related Projects
+
+- [ETH Balance](https://github.com/shawntabrizi/ethbalance) — Get the ETH balance of an address
+- [ETH Transaction Graph](https://github.com/shawntabrizi/ETH-Transaction-Graph) — Visualize Ethereum transactions in real time
+
+## License
+
+[MIT](LICENSE)
