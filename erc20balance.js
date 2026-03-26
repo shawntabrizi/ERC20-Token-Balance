@@ -9,12 +9,10 @@ const ERC20_ABI = [
 // Public RPC fallback (no API key needed)
 const PUBLIC_RPC = "https://ethereum-rpc.publicnode.com";
 
+// Always use the public RPC for read-only queries.
+// This avoids MetaMask's rate-limited Infura endpoint and works
+// without any wallet installed.
 function getProvider() {
-    if (window.ethereum) {
-        console.log("Wallet detected — using browser provider");
-        return new ethers.BrowserProvider(window.ethereum);
-    }
-    console.log("No wallet detected — using public RPC");
     return new ethers.JsonRpcProvider(PUBLIC_RPC);
 }
 
